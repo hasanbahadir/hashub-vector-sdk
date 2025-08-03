@@ -13,8 +13,8 @@ Features:
 - Comprehensive documentation
 
 Example:
-    >>> from Hashub_vector import HasHubVector
-    >>> client = HasHubVector(api_key="your-api-key")
+    >>> from hashub_vector import HashubVector
+    >>> client = HashubVector(api_key="your-api-key")
     >>> embeddings = client.vectorize("Merhaba dünya!")
     >>> print(embeddings.vector[:5])  # First 5 dimensions
 """
@@ -31,7 +31,7 @@ from .models import (
     MODEL_CONFIGS
 )
 from .exceptions import (
-    HasHubVectorError,
+    HashubVectorError,
     AuthenticationError,
     RateLimitError,
     ModelNotFoundError,
@@ -53,7 +53,7 @@ __all__ = [
     "ModelAlias",
     "ModelTier",
     "MODEL_CONFIGS",
-    "HasHubVectorError",
+    "HashubVectorError",
     "AuthenticationError",
     "RateLimitError",
     "ModelNotFoundError",

@@ -23,7 +23,7 @@ from .models import (
     APIResponse
 )
 from .exceptions import (
-    HasHubVectorError,
+    HashubVectorError,
     AuthenticationError,
     RateLimitError,
     ModelNotFoundError,
@@ -134,7 +134,7 @@ class HasHubVector:
         try:
             data = response.json()
         except json.JSONDecodeError:
-            raise HasHubVectorError(f"Invalid JSON response: {response.text}")
+            raise HashubVectorError(f"Invalid JSON response: {response.text}")
         
         if response.status_code == 200:
             return data
@@ -155,7 +155,7 @@ class HasHubVector:
         elif response.status_code >= 500:
             raise ServerError(data.get("error", "Internal server error"))
         else:
-            raise HasHubVectorError(
+            raise HashubVectorError(
                 f"HTTP {response.status_code}: {data.get('error', 'Unknown error')}",
                 status_code=response.status_code,
                 response_data=data
