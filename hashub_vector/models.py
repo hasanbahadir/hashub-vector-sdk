@@ -224,3 +224,77 @@ MODEL_CONFIGS = {
         description="Ultra-fast processing for lightweight applications"
     )
 }
+
+
+@dataclass
+class DailyUsage:
+    """Daily usage statistics."""
+    date: str
+    requests: int
+    tokens: int
+    cost: float
+    models_used: Dict[str, int] = field(default_factory=dict)
+
+
+@dataclass
+class UsageStats:
+    """Usage summary statistics."""
+    user_id: str
+    user_email: str
+    total_requests: int
+    total_tokens: int
+    total_cost: float
+    current_balance: float
+    period_start: str
+    period_end: str
+
+
+@dataclass
+class TopModel:
+    """Top model usage statistics."""
+    model: str
+    requests: int
+    tokens: int
+    cost: float
+    percentage: float
+
+
+@dataclass
+class UsageResponse:
+    """Complete usage response."""
+    summary: UsageStats
+    daily_breakdown: List[DailyUsage] = field(default_factory=list)
+    top_models: List[TopModel] = field(default_factory=list)
+
+
+@dataclass
+class UsageRequest:
+    """Usage request parameters."""
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    period: str = "last_30_days"
+    include_daily_breakdown: bool = True
+    
+    def __post_init__(self):
+        """Validate period parameter."""
+        valid_periods = ["today", "yesterday", "last_7_days", "last_30_days", "this_month", "last_month"]
+        if self.period not in valid_periods:
+            raise ValueError(f"Invalid period. Must be one of: {valid_periods}")
+
+
+# Legacy Usage class for backward compatibility
+@dataclass
+class Usage:
+    """Legacy usage information for backward compatibility."""
+    tokens_used: int
+    tokens_remaining: Optional[int] = None
+    requests_used: int = 0
+    requests_remaining: Optional[int] = None
+    
+    @property
+    def tokens_percentage_used(self) -> float:
+        """Calculate percentage of tokens used."""
+        if self.tokens_remaining is None:
+            return 0.0
+        total = self.tokens_used + self.tokens_remaining
+        return (self.tokens_used / total * 100) if total > 0 else 0.0

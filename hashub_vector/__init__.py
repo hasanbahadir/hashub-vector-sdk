@@ -19,7 +19,7 @@ Example:
     >>> print(embeddings.vector[:5])  # First 5 dimensions
 """
 
-from .client import HasHubVector
+from .client import HashubVector
 from .models import (
     VectorizeRequest,
     VectorizeResponse,
@@ -28,7 +28,12 @@ from .models import (
     ModelInfo,
     ModelAlias,
     ModelTier,
-    MODEL_CONFIGS
+    MODEL_CONFIGS,
+    UsageResponse,
+    UsageStats,
+    DailyUsage,
+    TopModel,
+    Usage
 )
 from .exceptions import (
     HashubVectorError,
@@ -44,7 +49,7 @@ __email__ = "support@Hashub.dev"
 __description__ = "Python SDK for Hashub Vector API - High-quality multilingual text embeddings"
 
 __all__ = [
-    "HasHubVector",
+    "HashubVector",
     "VectorizeRequest",
     "VectorizeResponse", 
     "BatchVectorizeRequest",
@@ -53,6 +58,11 @@ __all__ = [
     "ModelAlias",
     "ModelTier",
     "MODEL_CONFIGS",
+    "UsageResponse",
+    "UsageStats", 
+    "DailyUsage",
+    "TopModel",
+    "Usage",
     "HashubVectorError",
     "AuthenticationError",
     "RateLimitError",

@@ -20,6 +20,10 @@ from .models import (
     ModelInfo,
     MODEL_CONFIGS,
     Usage,
+    UsageResponse,
+    UsageStats,
+    DailyUsage,
+    TopModel,
     APIResponse
 )
 from .exceptions import (
@@ -35,7 +39,7 @@ from .exceptions import (
 )
 
 
-class HasHubVector:
+class HashubVector:
     """
     HasHub Vector API Python SDK Client
 
@@ -270,10 +274,10 @@ class HasHubVector:
         
         return VectorizeResponse(
             vector=data["vector"],
-            model=data["model"],
+            model=data["model_used"],
             dimension=data["dimension"],
-            token_count=data["token_count"],
-            chunk_count=data.get("chunk_count", 1),
+            token_count=data.get("usage", {}).get("total_tokens", 0),
+            chunk_count=data.get("chunks_processed", 1),
             processing_time_ms=data.get("processing_time_ms")
         )
     
@@ -332,10 +336,10 @@ class HasHubVector:
         
         return VectorizeResponse(
             vector=data["vector"],
-            model=data["model"],
+            model=data["model_used"],
             dimension=data["dimension"],
-            token_count=data["token_count"],
-            chunk_count=data.get("chunk_count", 1),
+            token_count=data.get("usage", {}).get("total_tokens", 0),
+            chunk_count=data.get("chunks_processed", 1),
             processing_time_ms=data.get("processing_time_ms")
         )
     
@@ -396,11 +400,11 @@ class HasHubVector:
         
         return BatchVectorizeResponse(
             vectors=data["vectors"],
-            model=data["model"],
+            model=data["model_used"],
             dimension=data["dimension"],
-            token_counts=data["token_counts"],
+            token_counts=data.get("token_counts", []),
             chunk_counts=data.get("chunk_counts", [1] * len(texts)),
-            total_tokens=data["total_tokens"],
+            total_tokens=data.get("usage", {}).get("total_tokens", 0),
             processing_time_ms=data.get("processing_time_ms")
         )
     
@@ -460,11 +464,11 @@ class HasHubVector:
         
         return BatchVectorizeResponse(
             vectors=data["vectors"],
-            model=data["model"],
+            model=data["model_used"],
             dimension=data["dimension"],
-            token_counts=data["token_counts"],
+            token_counts=data.get("token_counts", []),
             chunk_counts=data.get("chunk_counts", [1] * len(texts)),
-            total_tokens=data["total_tokens"],
+            total_tokens=data.get("usage", {}).get("total_tokens", 0),
             processing_time_ms=data.get("processing_time_ms")
         )
     
@@ -533,49 +537,154 @@ class HasHubVector:
         except httpx.NetworkError as e:
             raise NetworkError(f"Network error: {e}")
     
-    def get_usage(self) -> Usage:
+    def get_usage(self, period: str = "last_30_days", include_daily_breakdown: bool = True) -> UsageResponse:
         """
-        Get current API usage statistics.
+        Get detailed API usage statistics with date range support.
         
+        Args:
+            period: Time period - 'today', 'yesterday', 'last_7_days', 'last_30_days', 'this_month', 'last_month'
+            include_daily_breakdown: Include daily breakdown in response
+            
         Returns:
-            Usage object with token and request counts
+            UsageResponse with detailed usage statistics
             
         Example:
-            >>> usage = client.get_usage()
-            >>> print(f"Tokens used: {usage.tokens_used}")
-            >>> print(f"Usage percentage: {usage.tokens_percentage_used:.1f}%")
+            >>> usage = client.get_usage(period="last_7_days")
+            >>> print(f"Total requests: {usage.summary.total_requests}")
+            >>> print(f"Total cost: ${usage.summary.total_cost}")
+            >>> for day in usage.daily_breakdown:
+            ...     print(f"{day.date}: {day.requests} requests")
         """
         try:
-            response = self._client.get(f"{self.base_url}/usage")
+            params = {
+                "period": period,
+                "include_daily_breakdown": include_daily_breakdown
+            }
+            response = self._client.get(f"{self.base_url}/usage", params=params)
             data = self._handle_response(response)
             
-            return Usage(
-                tokens_used=data["tokens_used"],
-                tokens_remaining=data.get("tokens_remaining"),
-                requests_used=data.get("requests_used", 0),
-                requests_remaining=data.get("requests_remaining")
+            # Parse response data
+            summary_data = data["summary"]
+            summary = UsageStats(
+                user_id=summary_data["user_id"],
+                user_email=summary_data["user_email"],
+                total_requests=summary_data["total_requests"],
+                total_tokens=summary_data["total_tokens"],
+                total_cost=summary_data["total_cost"],
+                current_balance=summary_data["current_balance"],
+                period_start=summary_data["period_start"],
+                period_end=summary_data["period_end"]
             )
+            
+            # Parse daily breakdown
+            daily_breakdown = []
+            for day_data in data.get("daily_breakdown", []):
+                daily_breakdown.append(DailyUsage(
+                    date=day_data["date"],
+                    requests=day_data["requests"],
+                    tokens=day_data["tokens"],
+                    cost=day_data["cost"],
+                    models_used=day_data["models_used"]
+                ))
+            
+            # Parse top models
+            top_models = []
+            for model_data in data.get("top_models", []):
+                top_models.append(TopModel(
+                    model=model_data["model"],
+                    requests=model_data["requests"],
+                    tokens=model_data["tokens"],
+                    cost=model_data["cost"],
+                    percentage=model_data["percentage"]
+                ))
+            
+            return UsageResponse(
+                summary=summary,
+                daily_breakdown=daily_breakdown,
+                top_models=top_models
+            )
+            
         except httpx.TimeoutException:
             raise TimeoutError()
         except httpx.NetworkError as e:
             raise NetworkError(f"Network error: {e}")
     
-    async def aget_usage(self) -> Usage:
+    def get_usage_simple(self) -> Usage:
         """
-        Asynchronously get current API usage statistics.
+        Get simple usage statistics (legacy method for backward compatibility).
         
         Returns:
-            Usage object with token and request counts
+            Usage object with basic token and request counts
         """
         try:
-            response = await self.async_client.get(f"{self.base_url}/usage")
-            data = self._handle_response(response)
+            detailed_usage = self.get_usage(period="last_30_days", include_daily_breakdown=False)
+            summary = detailed_usage.summary
             
             return Usage(
-                tokens_used=data["tokens_used"],
-                tokens_remaining=data.get("tokens_remaining"),
-                requests_used=data.get("requests_used", 0),
-                requests_remaining=data.get("requests_remaining")
+                tokens_used=summary.total_tokens,
+                tokens_remaining=None,  # Not provided by new API
+                requests_used=summary.total_requests,
+                requests_remaining=None  # Not provided by new API
+            )
+        except Exception as e:
+            raise e
+    
+    async def aget_usage(self, period: str = "last_30_days", include_daily_breakdown: bool = True) -> UsageResponse:
+        """
+        Asynchronously get detailed API usage statistics.
+        
+        Args:
+            period: Time period - 'today', 'yesterday', 'last_7_days', 'last_30_days', 'this_month', 'last_month'
+            include_daily_breakdown: Include daily breakdown in response
+            
+        Returns:
+            UsageResponse with detailed usage statistics
+        """
+        try:
+            params = {
+                "period": period,
+                "include_daily_breakdown": include_daily_breakdown
+            }
+            response = await self.async_client.get(f"{self.base_url}/usage", params=params)
+            data = self._handle_response(response)
+            
+            # Parse response data (same logic as sync version)
+            summary_data = data["summary"]
+            summary = UsageStats(
+                user_id=summary_data["user_id"],
+                user_email=summary_data["user_email"],
+                total_requests=summary_data["total_requests"],
+                total_tokens=summary_data["total_tokens"],
+                total_cost=summary_data["total_cost"],
+                current_balance=summary_data["current_balance"],
+                period_start=summary_data["period_start"],
+                period_end=summary_data["period_end"]
+            )
+            
+            daily_breakdown = []
+            for day_data in data.get("daily_breakdown", []):
+                daily_breakdown.append(DailyUsage(
+                    date=day_data["date"],
+                    requests=day_data["requests"],
+                    tokens=day_data["tokens"],
+                    cost=day_data["cost"],
+                    models_used=day_data["models_used"]
+                ))
+            
+            top_models = []
+            for model_data in data.get("top_models", []):
+                top_models.append(TopModel(
+                    model=model_data["model"],
+                    requests=model_data["requests"],
+                    tokens=model_data["tokens"],
+                    cost=model_data["cost"],
+                    percentage=model_data["percentage"]
+                ))
+            
+            return UsageResponse(
+                summary=summary,
+                daily_breakdown=daily_breakdown,
+                top_models=top_models
             )
         except httpx.TimeoutException:
             raise TimeoutError()

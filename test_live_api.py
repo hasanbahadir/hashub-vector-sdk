@@ -7,8 +7,8 @@ import os
 import asyncio
 from hashub_vector import HashubVector
 
-# Real API key for testing
-API_KEY = "hh_live_62e6dbc416cf7760d22db26fc5e0d31c"
+# Real API key for testing - Use environment variable in production
+API_KEY = os.getenv("HASHUB_API_KEY", "hh_live_12546545654")
 
 def test_turkish_optimization():
     """Test Turkish language optimization with real API calls."""
@@ -185,7 +185,7 @@ async def test_async_operations():
             return False
 
 def test_usage_monitoring():
-    """Test usage monitoring."""
+    """Test usage monitoring with new detailed endpoint."""
     print("\n📊 Usage Monitoring Test")
     print("-" * 30)
     
@@ -195,16 +195,27 @@ def test_usage_monitoring():
     )
     
     try:
-        usage = client.get_usage()
+        # Test detailed usage statistics
+        usage = client.get_usage(period="last_7_days", include_daily_breakdown=True)
+        
         print(f"✅ Usage information retrieved:")
-        print(f"📊 Tokens used: {usage.tokens_used:,}")
+        print(f"📊 Total requests: {usage.summary.total_requests:,}")
+        print(f"📊 Total tokens: {usage.summary.total_tokens:,}")
+        print(f"📊 Total cost: ${usage.summary.total_cost:.4f}")
+        print(f"📊 Current balance: ${usage.summary.current_balance:.2f}")
+        print(f"📊 Period: {usage.summary.period_start} to {usage.summary.period_end}")
         
-        if usage.tokens_remaining:
-            print(f"📊 Tokens remaining: {usage.tokens_remaining:,}")
-            print(f"📊 Usage percentage: {usage.tokens_percentage_used:.1f}%")
+        # Show top models
+        if usage.top_models:
+            print(f"\n🔥 Top Models Used:")
+            for model in usage.top_models[:3]:  # Show top 3
+                print(f"  • {model.model}: {model.requests} requests ({model.percentage:.1f}%)")
         
-        if usage.requests_used:
-            print(f"📊 Requests made: {usage.requests_used}")
+        # Show recent daily activity
+        if usage.daily_breakdown:
+            print(f"\n📅 Recent Daily Activity:")
+            for day in usage.daily_breakdown[-3:]:  # Show last 3 days
+                print(f"  • {day.date}: {day.requests} requests, {day.tokens:,} tokens, ${day.cost:.4f}")
         
         return True
         
