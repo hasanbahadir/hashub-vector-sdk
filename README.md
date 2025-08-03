@@ -317,7 +317,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Development setup
-git clone https://github.com/Hashub-ai/hashub-vector-sdk.git
+git clone https://github.com/hasanbahadir/hashub-vector-sdk.git
 cd hashub-vector-sdk
 pip install -e ".[dev]"
 pre-commit install
@@ -329,10 +329,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [docs.vector.Hashub.dev](https://docs.vector.Hashub.dev)
-- **Email**: [support@Hashub.dev](mailto:support@Hashub.dev)
-- **Issues**: [GitHub Issues](https://github.com/Hashub-ai/hashub-vector-sdk/issues)
-- **Discord**: [Hashub Community](https://discord.gg/Hashub)
+- **Documentation**: [docs.vector.hashub.dev](https://docs.vector.hashub.dev)
+- **Email**: [support@hashub.dev](mailto:support@hashub.dev)
+- **Issues**: [GitHub Issues](https://github.com/hasanbahadir/hashub-vector-sdk/issues)
+- **Discord**: [Hashub Community](https://discord.gg/hashub)
 
 ## 🚀 What's Next?
 

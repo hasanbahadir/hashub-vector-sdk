@@ -148,15 +148,15 @@ Each example can be customized by modifying:
 
 ## 📚 Additional Resources
 
-- **[API Documentation](https://github.com/hashhub-ai/hashub-vector-sdk#api-documentation)** - Complete API reference
-- **[Model Comparison](https://github.com/hashhub-ai/hashub-vector-sdk#models)** - Model specifications
-- **[Turkish Optimization Guide](https://github.com/hashhub-ai/hashub-vector-sdk#turkish-optimization)** - Turkish-specific tips
-- **[Production Deployment](https://github.com/hashhub-ai/hashub-vector-sdk#production-deployment)** - Scaling guidelines
+- **[API Documentation](https://github.com/hasanbahadir/hashub-vector-sdk#api-documentation)** - Complete API reference
+- **[Model Comparison](https://github.com/hasanbahadir/hashub-vector-sdk#models)** - Model specifications
+- **[Turkish Optimization Guide](https://github.com/hasanbahadir/hashub-vector-sdk#turkish-optimization)** - Turkish-specific tips
+- **[Production Deployment](https://github.com/hasanbahadir/hashub-vector-sdk#production-deployment)** - Scaling guidelines
 
 ## 🆘 Need Help?
 
-- **Issues**: [GitHub Issues](https://github.com/hashhub-ai/hashub-vector-sdk/issues)
+- **Issues**: [GitHub Issues](https://github.com/hasanbahadir/hashub-vector-sdk/issues)
 - **Email**: [support@hashub.dev](mailto:support@hashub.dev)
-- **Documentation**: [GitHub Repository](https://github.com/hashhub-ai/hashub-vector-sdk)
+- **Documentation**: [GitHub Repository](https://github.com/hasanbahadir/hashub-vector-sdk)
 
 Happy coding! 🚀
