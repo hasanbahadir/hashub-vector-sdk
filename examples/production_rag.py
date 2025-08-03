@@ -1,8 +1,8 @@
 """
-Production RAG System Example with HashHub Vector SDK
+Production RAG System Example with Hashub Vector SDK
 
 This example demonstrates building a production-ready RAG (Retrieval Augmented Generation)
-system using HashHub Vector embeddings with proper error handling, monitoring, and optimization.
+system using Hashub Vector embeddings with proper error handling, monitoring, and optimization.
 """
 
 import os
@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor
 import logging
 
-from hashub_vector import HashHubVector
+from hashub_vector import HashubVector
 
 # Additional dependencies for production RAG
 try:
@@ -46,7 +46,7 @@ class DocumentChunk:
 
 class ProductionVectorStore:
     """
-    Production-ready vector store with HashHub Vector embeddings.
+    Production-ready vector store with Hashub Vector embeddings.
     
     Features:
     - Efficient similarity search
@@ -63,7 +63,7 @@ class ProductionVectorStore:
         similarity_threshold: float = 0.7,
         max_retries: int = 3
     ):
-        self.client = HashHubVector(api_key=api_key, max_retries=max_retries)
+        self.client = HashubVector(api_key=api_key, max_retries=max_retries)
         self.model = model
         self.similarity_threshold = similarity_threshold
         self.documents: List[DocumentChunk] = []
@@ -328,7 +328,7 @@ class ProductionVectorStore:
 
 
 class RAGSystem:
-    """Complete RAG system with HashHub Vector embeddings."""
+    """Complete RAG system with Hashub Vector embeddings."""
     
     def __init__(self, api_key: str, model: str = "gte_base"):
         self.vector_store = ProductionVectorStore(api_key=api_key, model=model)
@@ -521,12 +521,12 @@ def create_turkish_tech_knowledge_base():
 
 async def main():
     """Run production RAG system examples."""
-    print("🏭 HashHub Vector SDK - Production RAG System")
+    print("🏭 Hashub Vector SDK - Production RAG System")
     print("=" * 50)
     
-    api_key = os.getenv("HASHHUB_API_KEY")
+    api_key = os.getenv("HASHUB_API_KEY")
     if not api_key:
-        print("⚠️ Please set your HASHHUB_API_KEY environment variable")
+        print("⚠️ Please set your HASHUB_API_KEY environment variable")
         return
     
     try:

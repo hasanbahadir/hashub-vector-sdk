@@ -1,9 +1,9 @@
 # Hashub Vector SDK
 
-[![PyPI version](https://badge.fury.io/py/Hashub-vector.svg)](https://badge.fury.io/py/Hashub-vector)
+[![PyPI version](https://badge.fury.io/py/hashub-vector.svg)](https://badge.fury.io/py/hashub-vector)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/Hashub-vector)](https://pepy.tech/project/Hashub-vector)
+[![Downloads](https://pepy.tech/badge/hashub-vector)](https://pepy.tech/project/hashub-vector)
 
 **High-quality multilingual text embeddings with Turkish excellence** 🇹🇷
 
@@ -23,18 +23,18 @@ The official Python SDK for Hashub Vector API - providing state-of-the-art text 
 ## 📦 Installation
 
 ```bash
-pip install Hashub-vector
+pip install hashub-vector
 ```
 
 For development with all extras:
 ```bash
-pip install Hashub-vector[dev,examples]
+pip install hashub-vector[dev,examples]
 ```
 
 ## 🏃‍♂️ Quick Start
 
 ```python
-from Hashub_vector import HashubVector
+from hashub_vector import HashubVector
 
 # Initialize client
 client = HashubVector(api_key="your-api-key")
@@ -67,7 +67,7 @@ print(f"Similarity: {similarity:.3f}")
 
 ```python
 import asyncio
-from Hashub_vector import HashubVector
+from hashub_vector import HashubVector
 
 async def main():
     async with HashubVector(api_key="your-api-key") as client:
@@ -166,7 +166,7 @@ print(f"Usage percentage: {usage.tokens_percentage_used:.1f}%")
 ### With LangChain
 
 ```python
-from Hashub_vector import HashubVector
+from hashub_vector import HashubVector
 from langchain.embeddings.base import Embeddings
 
 class HashubEmbeddings(Embeddings):
@@ -190,7 +190,7 @@ embeddings = HashubEmbeddings(api_key="your-key", model="gte_base")
 
 ```python
 import pinecone
-from Hashub_vector import HashubVector
+from hashub_vector import HashubVector
 
 # Initialize clients
 client = HashubVector(api_key="your-Hashub-key")
@@ -212,7 +212,7 @@ index.upsert(vectors)
 ## 🔧 Error Handling
 
 ```python
-from Hashub_vector import (
+from hashub_vector import (
     HashubVector,
     AuthenticationError,
     RateLimitError,
@@ -292,13 +292,13 @@ The SDK automatically handles rate limiting with intelligent retry logic.
 
 ```bash
 # Install dev dependencies
-pip install Hashub-vector[dev]
+pip install hashub-vector[dev]
 
 # Run tests
 pytest
 
 # Run with coverage
-pytest --cov=Hashub_vector
+pytest --cov=hashub_vector
 
 # Run specific test
 pytest tests/test_client.py::test_vectorize
@@ -317,8 +317,8 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Development setup
-git clone https://github.com/Hashub-ai/Hashub-vector-sdk.git
-cd Hashub-vector-sdk
+git clone https://github.com/Hashub-ai/hashub-vector-sdk.git
+cd hashub-vector-sdk
 pip install -e ".[dev]"
 pre-commit install
 ```
@@ -331,7 +331,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Documentation**: [docs.vector.Hashub.dev](https://docs.vector.Hashub.dev)
 - **Email**: [support@Hashub.dev](mailto:support@Hashub.dev)
-- **Issues**: [GitHub Issues](https://github.com/Hashub-ai/Hashub-vector-sdk/issues)
+- **Issues**: [GitHub Issues](https://github.com/Hashub-ai/hashub-vector-sdk/issues)
 - **Discord**: [Hashub Community](https://discord.gg/Hashub)
 
 ## 🚀 What's Next?

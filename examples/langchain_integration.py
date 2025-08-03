@@ -1,13 +1,13 @@
 """
-LangChain Integration Example for HashHub Vector SDK
+LangChain Integration Example for Hashub Vector SDK
 
-This example shows how to integrate HashHub Vector embeddings with LangChain
+This example shows how to integrate Hashub Vector embeddings with LangChain
 for building RAG (Retrieval Augmented Generation) applications.
 """
 
 import os
 from typing import List
-from hashub_vector import HashHubVector
+from hashub_vector import HashubVector
 
 # LangChain imports (install with: pip install langchain)
 try:
@@ -21,9 +21,9 @@ except ImportError:
     LANGCHAIN_AVAILABLE = False
 
 
-class HashHubEmbeddings(Embeddings):
+class HashubEmbeddings(Embeddings):
     """
-    LangChain-compatible embeddings class using HashHub Vector API.
+    LangChain-compatible embeddings class using Hashub Vector API.
     
     This class implements the LangChain Embeddings interface, making it
     a drop-in replacement for other embedding providers.
@@ -37,15 +37,15 @@ class HashHubEmbeddings(Embeddings):
         chunk_overlap: float = None
     ):
         """
-        Initialize HashHub embeddings.
+        Initialize Hashub embeddings.
         
         Args:
-            api_key: HashHub API key
+            api_key: Hashub API key
             model: Model to use for embeddings
             chunk_size: Optional chunk size for long texts
             chunk_overlap: Optional overlap ratio (0-1)
         """
-        self.client = HashHubVector(api_key=api_key)
+        self.client = HashubVector(api_key=api_key)
         self.model = model
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
@@ -94,7 +94,7 @@ class HashHubEmbeddings(Embeddings):
 
 
 def create_turkish_knowledge_base():
-    """Create a Turkish knowledge base using HashHub embeddings."""
+    """Create a Turkish knowledge base using Hashub embeddings."""
     print("🇹🇷 Creating Turkish Knowledge Base with LangChain")
     print("-" * 60)
     
@@ -137,9 +137,9 @@ def create_turkish_knowledge_base():
         """
     ]
     
-    # Initialize HashHub embeddings optimized for Turkish
-    embeddings = HashHubEmbeddings(
-        api_key=os.getenv("HASHHUB_API_KEY"),
+    # Initialize Hashub embeddings optimized for Turkish
+    embeddings = HashubEmbeddings(
+        api_key=os.getenv("HASHUB_API_KEY"),
         model="gte_base",  # Best model for Turkish
         chunk_size=512
     )
@@ -206,8 +206,8 @@ def semantic_search_example():
     print("-" * 45)
     
     # Create embeddings client
-    embeddings = HashHubEmbeddings(
-        api_key=os.getenv("HASHHUB_API_KEY"),
+    embeddings = HashubEmbeddings(
+        api_key=os.getenv("HASHUB_API_KEY"),
         model="e5_base"  # Good for search tasks
     )
     
@@ -247,8 +247,8 @@ def cross_lingual_search():
     print("\n🌍 Cross-Lingual Search Example")
     print("-" * 35)
     
-    embeddings = HashHubEmbeddings(
-        api_key=os.getenv("HASHHUB_API_KEY"),
+    embeddings = HashubEmbeddings(
+        api_key=os.getenv("HASHUB_API_KEY"),
         model="gte_base"  # Best for multilingual
     )
     
@@ -281,22 +281,22 @@ def cross_lingual_search():
 
 
 def rag_pipeline_example():
-    """Complete RAG pipeline with HashHub embeddings."""
+    """Complete RAG pipeline with Hashub embeddings."""
     print("\n🤖 RAG Pipeline Example")
     print("-" * 25)
     
     # This would integrate with a language model for complete RAG
     # For this example, we'll show the retrieval part
     
-    embeddings = HashHubEmbeddings(
-        api_key=os.getenv("HASHHUB_API_KEY"),
+    embeddings = HashubEmbeddings(
+        api_key=os.getenv("HASHUB_API_KEY"),
         model="gte_base"
     )
     
     # Technical documentation
     tech_docs = [
         """
-        API Authentication: HashHub Vector API uses Bearer token authentication. 
+        API Authentication: Hashub Vector API uses Bearer token authentication. 
         Include your API key in the Authorization header: 
         'Authorization: Bearer your-api-key'
         """,
@@ -353,13 +353,13 @@ def main():
     if not LANGCHAIN_AVAILABLE:
         return
     
-    print("🔗 HashHub Vector SDK - LangChain Integration Examples")
+    print("🔗 Hashub Vector SDK - LangChain Integration Examples")
     print("=" * 65)
     
     # Check API key
-    api_key = os.getenv("HASHHUB_API_KEY")
+    api_key = os.getenv("HASHUB_API_KEY")
     if not api_key:
-        print("⚠️ Please set your HASHHUB_API_KEY environment variable")
+        print("⚠️ Please set your HASHUB_API_KEY environment variable")
         return
     
     try:

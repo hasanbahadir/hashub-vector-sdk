@@ -1,18 +1,32 @@
 """
-Basic Usage Examples for HashHub Vector SDK
+Basic Usage Examples for Hashub Vector SDK
 
-This example demonstrates the fundamental operations of the HashHub Vector SDK
+This example demonstrates the fundamental operations of the Hashub Vector SDK
 including single text embedding, batch processing, model selection, and
 Turkish language optimization.
 """
 
 import os
 import asyncio
-from hashub_vector import HashHubVector
+from hashub_vector import HashubVector
 
 # Initialize client with API key
-API_KEY = os.getenv("HASHHUB_API_KEY", "your-api-key-here")
-client = HashHubVector(api_key=API_KEY)
+API_KEY = os.getenv("HASHUB_API_KEY", "your-api-key-here")
+client = HashubVector(api_key=API_KEY)
+
+"""
+This example demonstrates the fundamental operations of the Hashub Vector SDK
+including single text embedding, batch processing, model selection, and
+Turkish language optimization.
+"""
+
+import os
+import asyncio
+from hashub_vector import HashubVector
+
+# Initialize client with API key
+API_KEY = os.getenv("HASHUB_API_KEY", "your-api-key-here")
+client = HashubVector(api_key=API_KEY)
 
 
 def basic_embedding():
@@ -199,7 +213,7 @@ async def async_example():
     print("⚡ Async Operations Example")
     print("-" * 50)
     
-    async with HashHubVector(api_key=API_KEY) as async_client:
+    async with HashubVector(api_key=API_KEY) as async_client:
         # Async single embedding
         response = await async_client.avectorize("Async embedding example")
         print(f"Async single embedding completed: {response.dimension}d vector")

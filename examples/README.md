@@ -1,6 +1,6 @@
-# HashHub Vector SDK Examples
+# Hashub Vector SDK Examples
 
-This directory contains comprehensive examples demonstrating how to use the HashHub Vector SDK in various scenarios.
+This directory contains comprehensive examples demonstrating how to use the Hashub Vector SDK in various scenarios.
 
 ## 📁 Examples Overview
 
@@ -22,7 +22,7 @@ python examples/basic_usage.py
 
 ### 2. **langchain_integration.py** - LangChain RAG
 Integration with LangChain for RAG applications:
-- ✅ Custom HashHub embeddings class
+- ✅ Custom Hashub embeddings class
 - ✅ Turkish knowledge base creation
 - ✅ Semantic search examples
 - ✅ Cross-lingual search capabilities
@@ -62,13 +62,13 @@ python examples/production_rag.py
 
 1. **Set your API key:**
 ```bash
-export HASHHUB_API_KEY="your-api-key-here"
+export HASHUB_API_KEY="your-api-key-here"
 ```
 
 2. **Install dependencies:**
 ```bash
 # Basic dependencies (included with SDK)
-pip install hashhub-vector
+pip install hashub-vector
 
 # For LangChain examples
 pip install langchain faiss-cpu
@@ -102,9 +102,9 @@ All examples include Turkish language optimization and demonstrate:
 
 ### Quick Embedding
 ```python
-from hashhub_vector import HashHubVector
+from hashhub_vector import HashubVector
 
-client = HashHubVector(api_key="your-key")
+client = HashubVector(api_key="your-key")
 response = client.vectorize("Merhaba dünya!", model="gte_base")
 print(response.vector[:5])  # First 5 dimensions
 ```
@@ -121,7 +121,7 @@ print(f"Processed {response.count} texts")
 import asyncio
 
 async def main():
-    async with HashHubVector(api_key="your-key") as client:
+    async with HashubVector(api_key="your-key") as client:
         response = await client.avectorize("Async example")
         print(f"Embedding: {len(response.vector)} dimensions")
 
@@ -148,15 +148,15 @@ Each example can be customized by modifying:
 
 ## 📚 Additional Resources
 
-- **[API Documentation](https://docs.vector.hashhub.dev)** - Complete API reference
-- **[Model Comparison](https://vector.hashhub.dev/models)** - Model specifications
-- **[Turkish Optimization Guide](https://docs.vector.hashhub.dev/turkish)** - Turkish-specific tips
-- **[Production Deployment](https://docs.vector.hashhub.dev/production)** - Scaling guidelines
+- **[API Documentation](https://github.com/hashhub-ai/hashub-vector-sdk#api-documentation)** - Complete API reference
+- **[Model Comparison](https://github.com/hashhub-ai/hashub-vector-sdk#models)** - Model specifications
+- **[Turkish Optimization Guide](https://github.com/hashhub-ai/hashub-vector-sdk#turkish-optimization)** - Turkish-specific tips
+- **[Production Deployment](https://github.com/hashhub-ai/hashub-vector-sdk#production-deployment)** - Scaling guidelines
 
 ## 🆘 Need Help?
 
-- **Issues**: [GitHub Issues](https://github.com/hashhub-ai/hashhub-vector-sdk/issues)
-- **Email**: [support@hashhub.dev](mailto:support@hashhub.dev)
-- **Documentation**: [docs.vector.hashhub.dev](https://docs.vector.hashhub.dev)
+- **Issues**: [GitHub Issues](https://github.com/hashhub-ai/hashub-vector-sdk/issues)
+- **Email**: [support@hashub.dev](mailto:support@hashub.dev)
+- **Documentation**: [GitHub Repository](https://github.com/hashhub-ai/hashub-vector-sdk)
 
 Happy coding! 🚀
