@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the HashHub Vector SDK will be documented in this file.
+All notable changes to the HasHub Vector SDK will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-01-03
 
 ### Added
-- Initial release of HashHub Vector SDK
+- Initial release of HasHub Vector SDK
 - Support for 6 embedding models (gte_base, nomic_base, e5_base, mpnet_base, e5_small, minilm_base)
 - Synchronous and asynchronous client operations
 - OpenAI-compatible embedding interface

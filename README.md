@@ -1,13 +1,13 @@
-# HashHub Vector SDK
+# Hashub Vector SDK
 
-[![PyPI version](https://badge.fury.io/py/hashhub-vector.svg)](https://badge.fury.io/py/hashhub-vector)
+[![PyPI version](https://badge.fury.io/py/Hashub-vector.svg)](https://badge.fury.io/py/Hashub-vector)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/hashhub-vector)](https://pepy.tech/project/hashhub-vector)
+[![Downloads](https://pepy.tech/badge/Hashub-vector)](https://pepy.tech/project/Hashub-vector)
 
 **High-quality multilingual text embeddings with Turkish excellence** 🇹🇷
 
-The official Python SDK for HashHub Vector API - providing state-of-the-art text embeddings with exceptional Turkish language support and 80+ other languages.
+The official Python SDK for Hashub Vector API - providing state-of-the-art text embeddings with exceptional Turkish language support and 80+ other languages.
 
 ## 🚀 Features
 
@@ -23,24 +23,24 @@ The official Python SDK for HashHub Vector API - providing state-of-the-art text
 ## 📦 Installation
 
 ```bash
-pip install hashhub-vector
+pip install Hashub-vector
 ```
 
 For development with all extras:
 ```bash
-pip install hashhub-vector[dev,examples]
+pip install Hashub-vector[dev,examples]
 ```
 
 ## 🏃‍♂️ Quick Start
 
 ```python
-from hashhub_vector import HashHubVector
+from Hashub_vector import HashubVector
 
 # Initialize client
-client = HashHubVector(api_key="your-api-key")
+client = HashubVector(api_key="your-api-key")
 
 # Single text embedding
-response = client.vectorize("Merhaba dünya! HashHub ile güçlü vektör embedding'ler.")
+response = client.vectorize("Merhaba dünya! Hashub ile güçlü vektör embedding'ler.")
 print(f"Vector dimension: {response.dimension}")
 print(f"First 5 dimensions: {response.vector[:5]}")
 
@@ -67,10 +67,10 @@ print(f"Similarity: {similarity:.3f}")
 
 ```python
 import asyncio
-from hashhub_vector import HashHubVector
+from Hashub_vector import HashubVector
 
 async def main():
-    async with HashHubVector(api_key="your-api-key") as client:
+    async with HashubVector(api_key="your-api-key") as client:
         # Async single embedding
         response = await client.avectorize("Async ile hızlı embedding!")
         
@@ -101,7 +101,7 @@ All models provide excellent Turkish language support, with `gte_base`, `e5_base
 ```python
 # Optimized for Turkish content
 response = client.vectorize(
-    "HashHub Vector API ile Türkçe metinlerinizi güçlü vektörlere dönüştürün!",
+    "Hashub Vector API ile Türkçe metinlerinizi güçlü vektörlere dönüştürün!",
     model="gte_base"  # Best for Turkish
 )
 ```
@@ -166,12 +166,12 @@ print(f"Usage percentage: {usage.tokens_percentage_used:.1f}%")
 ### With LangChain
 
 ```python
-from hashhub_vector import HashHubVector
+from Hashub_vector import HashubVector
 from langchain.embeddings.base import Embeddings
 
-class HashHubEmbeddings(Embeddings):
+class HashubEmbeddings(Embeddings):
     def __init__(self, api_key: str, model: str = "e5_base"):
-        self.client = HashHubVector(api_key=api_key)
+        self.client = HashubVector(api_key=api_key)
         self.model = model
     
     def embed_documents(self, texts):
@@ -183,17 +183,17 @@ class HashHubEmbeddings(Embeddings):
         return response.vector
 
 # Usage
-embeddings = HashHubEmbeddings(api_key="your-key", model="gte_base")
+embeddings = HashubEmbeddings(api_key="your-key", model="gte_base")
 ```
 
 ### With Pinecone
 
 ```python
 import pinecone
-from hashhub_vector import HashHubVector
+from Hashub_vector import HashubVector
 
 # Initialize clients
-client = HashHubVector(api_key="your-hashhub-key")
+client = HashubVector(api_key="your-Hashub-key")
 pinecone.init(api_key="your-pinecone-key", environment="your-env")
 
 # Create embeddings and store
@@ -212,14 +212,14 @@ index.upsert(vectors)
 ## 🔧 Error Handling
 
 ```python
-from hashhub_vector import (
-    HashHubVector,
+from Hashub_vector import (
+    HashubVector,
     AuthenticationError,
     RateLimitError,
     QuotaExceededError
 )
 
-client = HashHubVector(api_key="your-key")
+client = HashubVector(api_key="your-key")
 
 try:
     response = client.vectorize("Your text")
@@ -233,7 +233,7 @@ except QuotaExceededError:
 
 ## 🌍 Language Support
 
-HashHub Vector SDK supports 80+ languages with excellent Turkish performance:
+Hashub Vector SDK supports 80+ languages with excellent Turkish performance:
 
 ### Tier 1 (Excellent Performance)
 🇹🇷 **Turkish**, English, German, French, Spanish, Italian, Portuguese, Dutch, Russian, Polish, Czech, Swedish, Danish, Norwegian, Finnish, Ukrainian
@@ -261,9 +261,9 @@ And 50+ additional languages including African, South Asian, and other European 
 
 ## 🔐 Authentication
 
-Get your API key from [HashHub Console](https://console.hashhub.dev):
+Get your API key from [Hashub Console](https://console.Hashub.dev):
 
-1. Sign up at HashHub Console
+1. Sign up at Hashub Console
 2. Create a new API key
 3. Choose your pricing tier
 4. Start building!
@@ -271,10 +271,10 @@ Get your API key from [HashHub Console](https://console.hashhub.dev):
 ```python
 # Environment variable (recommended)
 import os
-client = HashHubVector(api_key=os.getenv("HASHHUB_API_KEY"))
+client = HashubVector(api_key=os.getenv("Hashub_API_KEY"))
 
 # Direct initialization
-client = HashHubVector(api_key="hv-1234567890abcdef...")
+client = HashubVector(api_key="hv-1234567890abcdef...")
 ```
 
 ## 🚦 Rate Limits
@@ -292,13 +292,13 @@ The SDK automatically handles rate limiting with intelligent retry logic.
 
 ```bash
 # Install dev dependencies
-pip install hashhub-vector[dev]
+pip install Hashub-vector[dev]
 
 # Run tests
 pytest
 
 # Run with coverage
-pytest --cov=hashhub_vector
+pytest --cov=Hashub_vector
 
 # Run specific test
 pytest tests/test_client.py::test_vectorize
@@ -306,9 +306,9 @@ pytest tests/test_client.py::test_vectorize
 
 ## 📚 Documentation
 
-- **[Official Documentation](https://docs.vector.hashhub.dev)** - Complete API reference
-- **[Model Comparison](https://vector.hashhub.dev/models)** - Detailed model specifications
-- **[Pricing](https://vector.hashhub.dev/pricing)** - Transparent pricing information
+- **[Official Documentation](https://docs.vector.Hashub.dev)** - Complete API reference
+- **[Model Comparison](https://vector.Hashub.dev/models)** - Detailed model specifications
+- **[Pricing](https://vector.Hashub.dev/pricing)** - Transparent pricing information
 - **[Examples](./examples/)** - Integration examples and tutorials
 
 ## 🤝 Contributing
@@ -317,8 +317,8 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Development setup
-git clone https://github.com/hashhub-ai/hashhub-vector-sdk.git
-cd hashhub-vector-sdk
+git clone https://github.com/Hashub-ai/Hashub-vector-sdk.git
+cd Hashub-vector-sdk
 pip install -e ".[dev]"
 pre-commit install
 ```
@@ -329,10 +329,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [docs.vector.hashhub.dev](https://docs.vector.hashhub.dev)
-- **Email**: [support@hashhub.dev](mailto:support@hashhub.dev)
-- **Issues**: [GitHub Issues](https://github.com/hashhub-ai/hashhub-vector-sdk/issues)
-- **Discord**: [HashHub Community](https://discord.gg/hashhub)
+- **Documentation**: [docs.vector.Hashub.dev](https://docs.vector.Hashub.dev)
+- **Email**: [support@Hashub.dev](mailto:support@Hashub.dev)
+- **Issues**: [GitHub Issues](https://github.com/Hashub-ai/Hashub-vector-sdk/issues)
+- **Discord**: [Hashub Community](https://discord.gg/Hashub)
 
 ## 🚀 What's Next?
 
@@ -347,4 +347,4 @@ Check out our roadmap for upcoming features:
 
 **Made with ❤️ in Turkey** 🇹🇷
 
-**HashHub Vector SDK** - Powering the next generation of AI applications with Turkish excellence.
+**Hashub Vector SDK** - Powering the next generation of AI applications with Turkish excellence.

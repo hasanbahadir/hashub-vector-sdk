@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor
 import logging
 
-from hashhub_vector import HashHubVector
+from hashub_vector import HashHubVector
 
 # Additional dependencies for production RAG
 try:

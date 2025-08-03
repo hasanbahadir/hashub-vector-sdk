@@ -7,7 +7,7 @@ for building RAG (Retrieval Augmented Generation) applications.
 
 import os
 from typing import List
-from hashhub_vector import HashHubVector
+from hashub_vector import HashHubVector
 
 # LangChain imports (install with: pip install langchain)
 try:

@@ -1,7 +1,7 @@
 """
-HashHub Vector SDK - Python client for HashHub Vector API
+Hashub Vector SDK - Python client for Hashub Vector API
 
-A powerful, easy-to-use Python SDK for the HashHub Vector API that provides 
+A powerful, easy-to-use Python SDK for the Hashub Vector API that provides 
 high-quality text embeddings with multilingual support.
 
 Features:
@@ -13,22 +13,25 @@ Features:
 - Comprehensive documentation
 
 Example:
-    >>> from hashhub_vector import HashHubVector
-    >>> client = HashHubVector(api_key="your-api-key")
+    >>> from Hashub_vector import HasHubVector
+    >>> client = HasHubVector(api_key="your-api-key")
     >>> embeddings = client.vectorize("Merhaba dünya!")
     >>> print(embeddings.vector[:5])  # First 5 dimensions
 """
 
-from .client import HashHubVector
+from .client import HasHubVector
 from .models import (
     VectorizeRequest,
     VectorizeResponse,
     BatchVectorizeRequest,
     BatchVectorizeResponse,
-    ModelInfo
+    ModelInfo,
+    ModelAlias,
+    ModelTier,
+    MODEL_CONFIGS
 )
 from .exceptions import (
-    HashHubVectorError,
+    HasHubVectorError,
     AuthenticationError,
     RateLimitError,
     ModelNotFoundError,
@@ -36,18 +39,21 @@ from .exceptions import (
 )
 
 __version__ = "1.0.0"
-__author__ = "HashHub Team"
-__email__ = "support@hashhub.dev"
-__description__ = "Python SDK for HashHub Vector API - High-quality multilingual text embeddings"
+__author__ = "Hashub Team"
+__email__ = "support@Hashub.dev"
+__description__ = "Python SDK for Hashub Vector API - High-quality multilingual text embeddings"
 
 __all__ = [
-    "HashHubVector",
+    "HasHubVector",
     "VectorizeRequest",
     "VectorizeResponse", 
     "BatchVectorizeRequest",
     "BatchVectorizeResponse",
     "ModelInfo",
-    "HashHubVectorError",
+    "ModelAlias",
+    "ModelTier",
+    "MODEL_CONFIGS",
+    "HasHubVectorError",
     "AuthenticationError",
     "RateLimitError",
     "ModelNotFoundError",

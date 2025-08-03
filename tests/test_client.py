@@ -7,8 +7,8 @@ Run with: pytest
 import pytest
 import httpx
 from unittest.mock import Mock, patch, AsyncMock
-from hashhub_vector import (
-    HashHubVector,
+from hashub_vector import (
+    HasHubVector,
     VectorizeResponse,
     BatchVectorizeResponse,
     AuthenticationError,
@@ -18,13 +18,13 @@ from hashhub_vector import (
 )
 
 
-class TestHashHubVector:
+class TestHasHubVector:
     """Test cases for HashHub Vector client."""
     
     @pytest.fixture
     def client(self):
         """Create test client."""
-        return HashHubVector(api_key="test-key")
+        return HasHubVector(api_key="test-key")
     
     @pytest.fixture
     def mock_response(self):
@@ -53,18 +53,18 @@ class TestHashHubVector:
     
     def test_init_valid_api_key(self):
         """Test client initialization with valid API key."""
-        client = HashHubVector(api_key="test-key")
+        client = HasHubVector(api_key="test-key")
         assert client.api_key == "test-key"
         assert client.base_url == "https://vector.hashhub.dev"
     
     def test_init_empty_api_key(self):
         """Test client initialization with empty API key."""
         with pytest.raises(AuthenticationError):
-            HashHubVector(api_key="")
+            HasHubVector(api_key="")
     
     def test_init_custom_base_url(self):
         """Test client initialization with custom base URL."""
-        client = HashHubVector(
+        client = HasHubVector(
             api_key="test-key",
             base_url="https://custom.api.com/"
         )
@@ -217,18 +217,18 @@ class TestHashHubVector:
     
     def test_context_manager(self):
         """Test context manager functionality."""
-        with HashHubVector(api_key="test-key") as client:
-            assert isinstance(client, HashHubVector)
+        with HasHubVector(api_key="test-key") as client:
+            assert isinstance(client, HasHubVector)
         # Should not raise any errors on exit
 
 
-class TestAsyncHashHubVector:
+class TestAsyncHasHubVector:
     """Test cases for async HashHub Vector client operations."""
     
     @pytest.fixture
     def client(self):
         """Create test client."""
-        return HashHubVector(api_key="test-key")
+        return HasHubVector(api_key="test-key")
     
     @pytest.fixture
     def mock_response(self):
@@ -286,8 +286,8 @@ class TestAsyncHashHubVector:
     @pytest.mark.asyncio
     async def test_async_context_manager(self):
         """Test async context manager functionality."""
-        async with HashHubVector(api_key="test-key") as client:
-            assert isinstance(client, HashHubVector)
+        async with HasHubVector(api_key="test-key") as client:
+            assert isinstance(client, HasHubVector)
         # Should not raise any errors on exit
 
 
@@ -324,7 +324,7 @@ class TestModels:
     
     def test_usage_percentage_calculation(self):
         """Test usage percentage calculation."""
-        from hashhub_vector.models import Usage
+        from hashub_vector.models import Usage
         
         usage = Usage(tokens_used=750, tokens_remaining=250)
         assert usage.tokens_percentage_used == 75.0

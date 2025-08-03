@@ -8,7 +8,7 @@ Turkish language optimization.
 
 import os
 import asyncio
-from hashhub_vector import HashHubVector
+from hashub_vector import HashHubVector
 
 # Initialize client with API key
 API_KEY = os.getenv("HASHHUB_API_KEY", "your-api-key-here")
@@ -164,7 +164,7 @@ def error_handling_example():
     print("⚠️ Error Handling Example")
     print("-" * 50)
     
-    from hashhub_vector import (
+    from hashub_vector import (
         AuthenticationError, 
         ModelNotFoundError, 
         ValidationError,

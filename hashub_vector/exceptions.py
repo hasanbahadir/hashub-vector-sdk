@@ -8,7 +8,7 @@ providing clear error handling and debugging information.
 from typing import Optional, Dict, Any
 
 
-class HashHubVectorError(Exception):
+class HasHubVectorError(Exception):
     """Base exception for all HashHub Vector SDK errors."""
     
     def __init__(self, message: str, status_code: Optional[int] = None, response_data: Optional[Dict[str, Any]] = None):
@@ -18,14 +18,14 @@ class HashHubVectorError(Exception):
         self.response_data = response_data or {}
 
 
-class AuthenticationError(HashHubVectorError):
+class AuthenticationError(HasHubVectorError):
     """Raised when API key is invalid or missing."""
     
     def __init__(self, message: str = "Invalid or missing API key"):
         super().__init__(message, status_code=401)
 
 
-class RateLimitError(HashHubVectorError):
+class RateLimitError(HasHubVectorError):
     """Raised when rate limit is exceeded."""
     
     def __init__(self, message: str = "Rate limit exceeded", retry_after: Optional[int] = None):
@@ -33,7 +33,7 @@ class RateLimitError(HashHubVectorError):
         self.retry_after = retry_after
 
 
-class ModelNotFoundError(HashHubVectorError):
+class ModelNotFoundError(HasHubVectorError):
     """Raised when specified model is not available."""
     
     def __init__(self, model: str):
@@ -42,35 +42,35 @@ class ModelNotFoundError(HashHubVectorError):
         self.model = model
 
 
-class ValidationError(HashHubVectorError):
+class ValidationError(HasHubVectorError):
     """Raised when request parameters are invalid."""
     
     def __init__(self, message: str):
         super().__init__(message, status_code=400)
 
 
-class QuotaExceededError(HashHubVectorError):
+class QuotaExceededError(HasHubVectorError):
     """Raised when account quota is exceeded."""
     
     def __init__(self, message: str = "Account quota exceeded"):
         super().__init__(message, status_code=402)
 
 
-class ServerError(HashHubVectorError):
+class ServerError(HasHubVectorError):
     """Raised when server encounters an internal error."""
     
     def __init__(self, message: str = "Internal server error"):
         super().__init__(message, status_code=500)
 
 
-class TimeoutError(HashHubVectorError):
+class TimeoutError(HasHubVectorError):
     """Raised when request times out."""
     
     def __init__(self, message: str = "Request timed out"):
         super().__init__(message, status_code=408)
 
 
-class NetworkError(HashHubVectorError):
+class NetworkError(HasHubVectorError):
     """Raised when network connection fails."""
     
     def __init__(self, message: str = "Network connection failed"):

@@ -1,6 +1,6 @@
-# Contributing to HashHub Vector SDK
+# Contributing to HasHub Vector SDK
 
-We love your input! We want to make contributing to HashHub Vector SDK as easy and transparent as possible, whether it's:
+We love your input! We want to make contributing to HasHub Vector SDK as easy and transparent as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -25,8 +25,8 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/hashhub-vector-sdk.git
-cd hashhub-vector-sdk
+git clone https://github.com/your-username/HasHub-vector-sdk.git
+cd HasHub-vector-sdk
 
 # Create virtual environment
 python -m venv venv
@@ -46,13 +46,13 @@ pre-commit install
 pytest
 
 # Run with coverage
-pytest --cov=hashhub_vector --cov-report=html
+pytest --cov=HasHub_vector --cov-report=html
 
 # Run specific test file
 pytest tests/test_client.py
 
 # Run specific test
-pytest tests/test_client.py::TestHashHubVector::test_vectorize_success
+pytest tests/test_client.py::TestHasHubVector::test_vectorize_success
 ```
 
 ### Code Style
@@ -61,16 +61,16 @@ We use several tools to maintain code quality:
 
 ```bash
 # Format code
-black hashhub_vector/ tests/ examples/
+black hashub_vector/ tests/ examples/
 
 # Sort imports
-isort hashhub_vector/ tests/ examples/
+isort hashub_vector/ tests/ examples/
 
 # Lint code
-flake8 hashhub_vector/ tests/
+flake8 hashub_vector/ tests/
 
 # Type checking
-mypy hashhub_vector/
+mypy hashub_vector/
 ```
 
 All of these run automatically with pre-commit hooks.
@@ -129,7 +129,7 @@ We welcome feature requests! Please provide:
 ### Code Organization
 
 ```
-hashhub_vector/
+hashub_vector/
 ├── __init__.py          # Package exports
 ├── client.py            # Main client class
 ├── models.py            # Data models and schemas
@@ -265,7 +265,7 @@ Examples of behavior that contributes to creating a positive environment:
 
 ### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [support@hashhub.dev](mailto:support@hashhub.dev).
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [support@hashub.dev](mailto:support@hashub.dev).
 
 ## 🎯 Areas We Need Help
 
@@ -278,8 +278,8 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 
 ## 📞 Contact
 
-- **Email**: [support@hashhub.dev](mailto:support@hashhub.dev)
-- **GitHub Issues**: [Issues Page](https://github.com/hashhub-ai/hashhub-vector-sdk/issues)
-- **Discord**: [HashHub Community](https://discord.gg/hashhub)
+- **Email**: [support@hashub.dev](mailto:support@hashub.dev)
+- **GitHub Issues**: [Issues Page](https://github.com/hashub-ai/hashub-vector-sdk/issues)
+- **Discord**: [HasHub Community](https://discord.gg/hashub)
 
-Thank you for contributing to HashHub Vector SDK! 🚀
+Thank you for contributing to HasHub Vector SDK! 🚀

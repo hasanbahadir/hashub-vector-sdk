@@ -1,7 +1,7 @@
 """
-HashHub Vector API Python SDK - Main Client
+Hashub Vector API Python SDK - Main Client
 
-This module provides the main client class for interacting with the HashHub Vector API.
+This module provides the main client class for interacting with the Hashub Vector API.
 Supports both synchronous and asynchronous operations with comprehensive error handling.
 """
 
@@ -23,7 +23,7 @@ from .models import (
     APIResponse
 )
 from .exceptions import (
-    HashHubVectorError,
+    HasHubVectorError,
     AuthenticationError,
     RateLimitError,
     ModelNotFoundError,
@@ -35,11 +35,11 @@ from .exceptions import (
 )
 
 
-class HashHubVector:
+class HasHubVector:
     """
-    HashHub Vector API Python SDK Client
-    
-    A comprehensive client for the HashHub Vector API that provides high-quality
+    HasHub Vector API Python SDK Client
+
+    A comprehensive client for the HasHub Vector API that provides high-quality
     text embeddings with multilingual support.
     
     Features:
@@ -51,14 +51,14 @@ class HashHubVector:
     - OpenAI-compatible interface
     
     Args:
-        api_key: Your HashHub Vector API key
-        base_url: API base URL (default: https://vector.hashhub.dev)
+        api_key: Your Hashub Vector API key
+        base_url: API base URL (default: https://vector.Hashub.dev)
         timeout: Request timeout in seconds (default: 30)
         max_retries: Maximum number of retries (default: 3)
         retry_delay: Initial retry delay in seconds (default: 1)
         
     Example:
-        >>> client = HashHubVector(api_key="your-api-key")
+        >>> client = HasHubVector(api_key="your-api-key")
         >>> response = client.vectorize("Merhaba dünya!")
         >>> print(response.vector[:5])  # First 5 dimensions
     """
@@ -66,7 +66,7 @@ class HashHubVector:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://vector.hashhub.dev",
+        base_url: str = "https://vector.hashub.dev",
         timeout: float = 30.0,
         max_retries: int = 3,
         retry_delay: float = 1.0,
@@ -86,7 +86,7 @@ class HashHubVector:
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
-                "User-Agent": user_agent or f"hashhub-vector-sdk/1.0.0",
+                "User-Agent": user_agent or f"Hashub-vector-sdk/1.0.0",
                 "Accept": "application/json"
             }
         )
@@ -134,7 +134,7 @@ class HashHubVector:
         try:
             data = response.json()
         except json.JSONDecodeError:
-            raise HashHubVectorError(f"Invalid JSON response: {response.text}")
+            raise HasHubVectorError(f"Invalid JSON response: {response.text}")
         
         if response.status_code == 200:
             return data
@@ -155,7 +155,7 @@ class HashHubVector:
         elif response.status_code >= 500:
             raise ServerError(data.get("error", "Internal server error"))
         else:
-            raise HashHubVectorError(
+            raise HasHubVectorError(
                 f"HTTP {response.status_code}: {data.get('error', 'Unknown error')}",
                 status_code=response.status_code,
                 response_data=data

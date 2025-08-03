@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hashhub-vector"
+name = "Hashub-vector"
 version = "1.0.0"
 authors = [
-    {name = "HashHub Team", email = "support@hashhub.dev"},
+    {name = "Hashub Team", email = "support@Hashub.dev"},
 ]
-description = "Python SDK for HashHub Vector API - High-quality multilingual text embeddings"
+description = "Python SDK for Hashub Vector API - High-quality multilingual text embeddings"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.8"
@@ -70,17 +70,17 @@ examples = [
 ]
 
 [project.urls]
-Homepage = "https://vector.hashhub.dev"
-Documentation = "https://docs.vector.hashhub.dev"  
-Repository = "https://github.com/hashhub-ai/hashhub-vector-sdk"
-Issues = "https://github.com/hashhub-ai/hashhub-vector-sdk/issues"
-Changelog = "https://github.com/hashhub-ai/hashhub-vector-sdk/blob/main/CHANGELOG.md"
+Homepage = "https://vector.Hashub.dev"
+Documentation = "https://docs.vector.Hashub.dev"  
+Repository = "https://github.com/Hashub-ai/Hashub-vector-sdk"
+Issues = "https://github.com/Hashub-ai/Hashub-vector-sdk/issues"
+Changelog = "https://github.com/Hashub-ai/Hashub-vector-sdk/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
-include = ["hashhub_vector*"]
+include = ["Hashub_vector*"]
 
 [tool.setuptools.package-data]
-hashhub_vector = ["py.typed"]
+Hashub_vector = ["py.typed"]
 
 [tool.black]
 line-length = 100
@@ -103,7 +103,7 @@ extend-exclude = '''
 [tool.isort]
 profile = "black"
 line_length = 100
-known_first_party = ["hashhub_vector"]
+known_first_party = ["Hashub_vector"]
 known_third_party = ["httpx", "pytest"]
 
 [tool.mypy]
@@ -128,12 +128,12 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "--cov=hashhub_vector --cov-report=term-missing --cov-report=html"
+addopts = "--cov=Hashub_vector --cov-report=term-missing --cov-report=html"
 testpaths = ["tests"]
 asyncio_mode = "auto"
 
 [tool.coverage.run]
-source = ["hashhub_vector"]
+source = ["Hashub_vector"]
 omit = ["*/tests/*"]
 
 [tool.coverage.report]
